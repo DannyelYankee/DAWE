@@ -1,0 +1,66 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ej 5.1</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+      function mostrarDatos() {
+        var sel = document.getElementById("lista");
+        var text = sel.options[sel.selectedIndex].value;
+        var dir =
+          "https://openlibrary.org/api/books?bibkeys=" +
+          text +
+          "&jscmd=details&format=json";
+
+        fetch(dir)
+          .then((response) => response.json())
+          .then(function (data) {
+            console.log(data);
+            var titulo = data[text].details.title;
+            var image = data[text].thumbnail_url;
+            var imagenGrande = image.substring(0, image.length - 5)+"L.jpg";
+
+            var len = Object.keys(data[text].details.authors).length;
+
+            if (len > 1) {
+              for (i = 0; i < len; i++) {
+                autor += data[text].details.authors[i].name + ", ";
+              }
+              //borrar la última coma.
+              autor = autor.substring(0, autor.length - 2);
+            } else {
+              autor = data[text].details.authors[0].name;
+            }
+
+            //lo añadimos al html
+            document.getElementById("nombreTitulo").innerHTML = titulo;
+            document.getElementById("nombreAutor").innerHTML = autor;
+            document.getElementById("imagen").src = imagenGrande;
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="lista-isbn">
+      <header><h1>Selecciona de la lista alguno de estos ISBN</h1></header>
+      <select name="lista" id="lista">
+        <option selected="val0">Selecciona un ISBN</option>
+        <option value="9781491920497">ISBN: 9781491920497</option>
+        <option value="1491910399">ISBN: 1491910399</option>
+        <option value="1491946008">ISBN: 1491946008</option>
+        <option value="1491978236">ISBN: 1491978236</option>
+        <option value="9781491906187">ISBN: 9781491906187</option>
+      </select>
+      <button onclick="mostrarDatos()">Obtener datos del libro</button>
+    </div>
+    <div id="datos">
+      <label id="titulo">Titulo: </label>
+      <label id="nombreTitulo"></label><br />
+      <label id="autor">Autor: </label>
+      <label id="nombreAutor"> </label><br />
+      <img src="" id="imagen" />
+    </div>
+  </body>
+</html>
