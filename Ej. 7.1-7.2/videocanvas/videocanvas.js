@@ -84,13 +84,15 @@ function rotar() {
     var canvasWidth = context.width;
     var canvasHeight = context.height;
 
-    context.clearRect(0, 0, canvasWidth, canvasHeight);
 
     context.translate(canvasWidth / 2, canvasWidth / 2);
+    display.translate(canvasWidth / 2, canvasWidth / 2);
 
     context.rotate(Math.PI / 180);
+    display.rotate(Math.PI / 180);
 
     context.translate(-canvasWidth / 2, -canvasWidth / 2);
+    display.translate(-canvasWidth / 2, -canvasWidth / 2);
 
 
 }
