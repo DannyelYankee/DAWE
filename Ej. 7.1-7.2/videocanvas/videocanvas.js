@@ -11,7 +11,7 @@ window.onload = function () {
   botonScifi.onclick = cambiarEfecto;
 
   var botonRotar = document.getElementById("rotar");
-  botonRotar.onclick = cambiarEfecto;
+  botonRotar.onclick = loopRotar;
 
   var botonAudio = document.getElementById("audio");
   botonAudio.onclick = cambiarEfecto;
@@ -47,8 +47,6 @@ function cambiarEfecto(e) {
   } else if (id == "scifi") {
     efecto = scifi;
     console.log("scifi");
-  } else if (id == "rotar") {
-    efecto = rotar;
   } else if (id == "audio") {
     efecto = audio;
   } else {
@@ -69,34 +67,33 @@ function pausarVideo() {
   }
 }
 function audio() {
-
   /* FALTA ARREGLAR */
   console.log("audio");
   loadAudio("audio/soundtrack.mp3").then((audio) => audio.play());
-  
 }
 function rotar() {
+  console.log("rotar");
   /* FALTA ARREGLAR */
   var bufferCanvas = document.getElementById("buffer");
   var displayCanvas = document.getElementById("display");
-  var buffer = bufferCanvas.getContext("2d");
-  var context = displayCanvas.getContext("2d");
+  var context = bufferCanvas.getContext("2d");
+  var display = displayCanvas.getContext("2d");
 
   var canvasWidth = context.width;
   var canvasHeight = context.height;
-  // Clear the canvas
+
   context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-  // Move registration point to the center of the canvas
   context.translate(canvasWidth / 2, canvasWidth / 2);
 
-  // Rotate 1 degree
   context.rotate(Math.PI / 180);
 
-  // Move registration point back to the top left corner of canvas
   context.translate(-canvasWidth / 2, -canvasWidth / 2);
 
-  context.drawImage(video, 0, 0, context.width, context.height);
+  
+}
+function loopRotar() {
+  setInterval(rotar, 100);
 }
 //
 function scifi(pos, r, g, b, data) {
@@ -163,7 +160,7 @@ function byn(pos, r, g, b, data) {
 
 function loadAudio(url) {
   return new Promise((resolve) => {
-    var audio = new Audio();    
+    var audio = new Audio();
     audio.addEventListener("load", () => {
       resolve(audio);
     });
