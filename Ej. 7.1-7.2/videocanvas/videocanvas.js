@@ -1,6 +1,8 @@
 var efecto = null;
 var clip = "video/demovideo1"; // nombre del vídeo, sin extensión
 var pausado = false;
+
+
 window.onload = function() {
     var video = document.getElementById("video");
     var botonByN = document.getElementById("byn");
@@ -14,7 +16,7 @@ window.onload = function() {
     botonRotar.onclick = loopRotar;
 
     var botonAudio = document.getElementById("audio");
-    botonAudio.onclick = cambiarEfecto;
+    botonAudio.onclick = audio;
 
     var botonPip = document.getElementById("pip");
     botonPip.addEventListener("click", async function() {
@@ -46,8 +48,6 @@ function cambiarEfecto(e) {
     } else if (id == "scifi") {
         efecto = scifi;
         console.log("scifi");
-    } else if (id == "audio") {
-        efecto = audio;
     } else {
         efecto = null;
     }
@@ -68,31 +68,32 @@ function pausarVideo() {
 }
 
 function audio() {
-    /* FALTA ARREGLAR */
     console.log("audio");
     loadAudio("audio/soundtrack.mp3").then((audio) => audio.play());
 }
 
+
+function loadAudio(url) {
+    const audio = new Audio();
+    return new Promise(resolve => {
+        audio.addEventListener('canplaythrough', () => {
+            resolve(audio);
+        });
+        audio.src = url;
+    });
+
+}
+
 function rotar() {
     console.log("rotar");
-    /* FALTA ARREGLAR */
     var bufferCanvas = document.getElementById("buffer");
-    var displayCanvas = document.getElementById("display");
     var context = bufferCanvas.getContext("2d");
-    var display = displayCanvas.getContext("2d");
-
     var canvasWidth = context.width;
     var canvasHeight = context.height;
 
-
-    context.translate(canvasWidth / 2, canvasWidth / 2);
-    display.translate(canvasWidth / 2, canvasWidth / 2);
-
+    context.translate(canvasWidth / 2, canvasHeight / 2);
     context.rotate(Math.PI / 180);
-    display.rotate(Math.PI / 180);
-
-    context.translate(-canvasWidth / 2, -canvasWidth / 2);
-    display.translate(-canvasWidth / 2, -canvasWidth / 2);
+    context.translate(-canvasWidth / 2, -canvasHeight / 2);
 
 
 }
@@ -161,13 +162,4 @@ function byn(pos, r, g, b, data) {
     data[pos * 4 + 0] = gris;
     data[pos * 4 + 1] = gris;
     data[pos * 4 + 2] = gris;
-}
-
-function loadAudio(url) {
-    return new Promise((resolve) => {
-        var audio = new Audio(url);
-        audio.addEventListener("canplaythrough", () => {
-            resolve(audio);
-        });
-    });
 }
