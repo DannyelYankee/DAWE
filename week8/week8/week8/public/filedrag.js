@@ -52,22 +52,22 @@ function parseFile(file) {
   );
 }
 
-function enviar(submitform) {
+function enviar() {
   // debes devolver una función que recoja los datos de submitform usando FormData y haga una
   // petición post (usando el Fetch API) con dichos datos a /pedido/add
   //  El resultado debes tratarlo como un objeto JSON y mostrarlo pantalla. En concreto la respuesta
   // JSON debe contener las rutas a los ficheros subidos al servidor (al hacer click sobre ellas deben
   // abrirse los ficheros) y los valores del resto de campos
-  const FormData = require("form-data");
+  //const FormData = require("form-data");
   const datos = new FormData();
-  datos.append("Nombre", submitform.elements["nombre"]);
-  datos.append("Telefono", submitform.elements["tlf"]);
-  datos.append("Email", submitform.elements["email"]);
-  var e = submitform.elements["libros"];
+  datos.append("Nombre", $id("nombre"));
+  datos.append("Telefono", $id("tlf"));
+  datos.append("Email", $id("email"));
+  var e = $id("libros");
   var eleccion = e.options[e.selectedIndex].text;
   datos.append("Libro", eleccion);
-  datos.append("Email", submitform.elements["cantidad"]);
-  datos.append("Imagenes", submitform.elements["fileselect"]);
+  datos.append("Email", $id("cantidad"));
+  datos.append("Imagenes", $id("fileselect"));
 
   return (enviado = fetch("/pedido/add", {
     method: "POST",
@@ -81,7 +81,7 @@ function init() {
     filedrag = $id("filedrag"),
     submitbutton = $id("enviar");
 
-  submitbutton.onclick = enviar($id("upload"));
+  submitbutton.onclick = enviar();
 
   // file select
   fileselect.addEventListener("change", fileSelectHandler, false);

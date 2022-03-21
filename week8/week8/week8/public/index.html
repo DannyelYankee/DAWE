@@ -7,10 +7,9 @@
   </head>
 
   <body>
-    <form id="upload" method="POST" enctype="multipart/form-data">
+    <form id="upload" action="validacion.js" method="POST" enctype="multipart/form-data">
       <fieldset>
         <legend>Datos del cliente</legend>
-
         <div>
           <label>Nombre:</label>
           <input
@@ -19,7 +18,9 @@
             type="text"
             id="nombre"
             placeholder="Introduce tu nombre"
+            title="Por favor, introduce tu nombre"
             size="35px"
+            required
           />
         </div>
         <br />
@@ -32,6 +33,8 @@
             id="tlf"
             placeholder="Patrón: 123-456-789"
             size="35px"
+            title="El campo del teléfono es incorrecto. Debe tener el siguiente formato: 123-456-789"
+            required
           />
         </div>
         <br />
@@ -43,7 +46,9 @@
             placeholder="Introduce tu dirección de correo electrónico"
             name="email"
             size="35px"
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             title="El campo del email es incorrecto. Debe tener el siguiente formato: hola@gmail.com"
+            required
           />
         </div>
       </fieldset>
@@ -60,7 +65,7 @@
             <option value="default" selected></option>
           </select>
           <label>Cantidad (Máx. 5):</label>
-          <input type="number" id="1_5" min="1" max="5" name="cantidad"  />
+          <input type="number" id="1_5" min="1" max="5" name="cantidad" required  />
         </div>
       </fieldset>
 
