@@ -1,37 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>Entrega</title>
     <link rel="stylesheet" type="text/css" media="all" href="filedrag.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <form id="upload" method="POST" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Datos del cliente</legend>
+      <fieldset>
+        <legend>Datos del cliente</legend>
 
-            <div>
-                <label>Nombre:</label>
-                <input type="text" id="nombre" placeholder="Introduce tu nombre" size="35px" />
-            </div>
-            <br>
-            <div>
-                <label>Teléfono:</label>
-                <input type="text" pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{3}" id="tlf" placeholder="Patrón: 123-456-789" size="35px" />
-            </div>
-            <br>
-            <div>
-                <label>E-mail:</label>
-                <input type="email" id="email" placeholder="Introduce tu dirección de correo electrónico" size="35px" title="El campo del email es incorrecto. Debe tener el siguiente formato: hola@gmail.com" />
-            </div>
-        </fieldset>
+        <div>
+          <label>Nombre:</label>
+          <input
+            autofocus="autofocus"
+            name="nombre"
+            type="text"
+            id="nombre"
+            placeholder="Introduce tu nombre"
+            size="35px"
+          />
+        </div>
+        <br />
+        <div>
+          <label>Teléfono:</label>
+          <input
+            type="text"
+            pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{3}"
+            name="tlf"
+            id="tlf"
+            placeholder="Patrón: 123-456-789"
+            size="35px"
+          />
+        </div>
+        <br />
+        <div>
+          <label>E-mail:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Introduce tu dirección de correo electrónico"
+            name="email"
+            size="35px"
+            title="El campo del email es incorrecto. Debe tener el siguiente formato: hola@gmail.com"
+          />
+        </div>
+      </fieldset>
 
-        <fieldset>
-            <legend>Libros</legend>
-            <div>
-                <select name="" id="">
+      <fieldset>
+        <legend>Libros</legend>
+        <div>
+          <select name="libros" id="libros">
             <option value="libro1">Libro1</option>
             <option value="libro2">Libro2</option>
             <option value="libro3">Libro3</option>
@@ -39,26 +59,25 @@
             <option value="libro5">Libro5</option>
             <option value="default" selected></option>
           </select>
-                <label>Cantidad (Máx. 5):</label>
-                <input type="number" id="1_5" min="1" max="5" value="1" />
-            </div>
-        </fieldset>
+          <label>Cantidad (Máx. 5):</label>
+          <input type="number" id="1_5" min="1" max="5" name="cantidad"  />
+        </div>
+      </fieldset>
 
-        <fieldset>
-            <legend>File Upload</legend>
-            <div>
-                <label for="fileselect">Elige los ficheros a subir:</label>
-                <input type="file" id="fileselect" name="fileselect" multiple />
-                <div id="filedrag">or drop files here</div>
-            </div>
-        </fieldset>
-        <br>
-        <input type="submit" id="enviar" value="enviar" />
+      <fieldset>
+        <legend>File Upload</legend>
+        <div>
+          <label for="fileselect">Elige los ficheros a subir:</label>
+          <input type="file" id="fileselect" name="fileselect" multiple />
+          <div id="filedrag">or drop files here</div>
+        </div>
+      </fieldset>
+      <br />
+      <input type="submit" id="enviar" value="enviar" />
     </form>
     <div id="messages">
-        <p>Mensajes de estado</p>
+      <p>Mensajes de estado</p>
     </div>
     <script src="filedrag.js"></script>
-</body>
-
+  </body>
 </html>
