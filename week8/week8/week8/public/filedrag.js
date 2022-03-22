@@ -58,7 +58,7 @@ function enviar() {
   //  El resultado debes tratarlo como un objeto JSON y mostrarlo pantalla. En concreto la respuesta
   // JSON debe contener las rutas a los ficheros subidos al servidor (al hacer click sobre ellas deben
   // abrirse los ficheros) y los valores del resto de campos
-  //const FormData = require("form-data");
+  const FormData = require("form-data");
   const datos = new FormData();
   datos.append("Nombre", $id("nombre"));
   datos.append("Telefono", $id("tlf"));
