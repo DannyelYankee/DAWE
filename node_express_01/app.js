@@ -154,7 +154,22 @@ app.delete('/users/delete/:id', function(req, res) {
     });
 });
 
+app.post('/users/edit/:id', function(req, res) {
+    var nombre = req.body.first_name;
+    var apellido = req.body.last_name;
+    var email = req.body.email;
 
+    db.users.update({
+            _id: ObjectId(req.params.id)
+        }, { $set: { 'first_name': nombre, 'last_name': apellido, 'email': email } },
+        function(err, result) {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect(303, '/');
+
+        });
+});
 
 app.listen(3000, function() {
     console.log("Servidor lanzado en el puerto 3000");
