@@ -4,6 +4,10 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.editUser').on('click', editUser);
 });
+$(document).ready(function() {
+    $('.editUser').on('submit', editUserClick);
+});
+
 
 function deleteUser() {
     //alert('Borrar!');
@@ -36,13 +40,23 @@ function editUser() {
     document.getElementById('apellido').value = apellido;
     document.getElementById('email').value = email;
 
+    document.getElementById('form').action = "/users/edit/" + $(this).data('id');
 
-    /*
+}
+
+function editUserClick() {
+    var boton = document.getElementById('boton');
     $.ajax({
         type: 'POST',
         url: '/users/edit/' + $(this).data('id')
     }).done(function(response) {
         window.location.replace('/')
     });
-*/
+    boton.value = "Enviar";
+    document.getElementById('nombre').value = "";
+    document.getElementById('apellido').value = "";
+    document.getElementById('email').value = "";
+
+
+
 }
