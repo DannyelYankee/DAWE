@@ -1,18 +1,24 @@
 <!doctype html>
 <html>
+
 <head>
-<title>Post-its</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="postits.css">
-<script src="postits.js"></script>
+    <title>Post-its</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="postits.css">
+    <script src="postits.js"></script>
 </head>
+
 <body>
-	<form>
-	   <input type="text" id="note_text" />
-	   <input type="button" id="add_button" value="Añadir nuevo post-it">
-	</form>
-	
-	<ul id="stickies">
-	</ul>
+    <form>
+        <input type="text" id="note_text" />
+
+        <input type="button" id="add_button" value="Añadir nuevo post-it">
+        <input type="button" id="delete_button" value="Eliminar los post-it">
+    </form>
+    <label>Espacio utilizado: </label>
+    <label id="espacio"> KB</label>
+    <ul id="stickies">
+    </ul>
 </body>
+
 </html>
