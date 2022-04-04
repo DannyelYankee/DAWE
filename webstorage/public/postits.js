@@ -37,6 +37,10 @@ function init() {
 }
 
 function getSize() {
+
+    /*codigo obtenido de: https://gist.github.com/tkambler/71050d80f1a57ea83c18  */
+
+
     let _lsTotal = 0,
         _xLen, _x;
     for (_x in localStorage) {
