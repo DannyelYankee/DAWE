@@ -1,0 +1,14 @@
+{
+  "name": "webstorage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "postits.html",
+  "scripts": {
+    "start": "serve ./public"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serve": "^13.0.2"
+  }
+}
